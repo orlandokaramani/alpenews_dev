@@ -1,30 +1,57 @@
+import { UserData } from './../providers/user-data';
+import { SchedulePage } from './../pages/schedule/schedule';
+import { PostPage } from '../pages/post/post';
+import { HttpModule } from '@angular/http';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { MyApp } from './app.component';
+import { Service } from '../providers/service'
+import { SuperTabsModule } from 'ionic2-super-tabs';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { IonicStorageModule } from '@ionic/storage';
+import { OneSignal } from '@ionic-native/onesignal'
+import { Functions } from '../providers/functions';
+import { Facebook } from '@ionic-native/facebook';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    PostPage,
+    SchedulePage,
+  
   ],
   imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicStorageModule.forRoot(),
+    BrowserModule, 
+    HttpModule,
+    IonicModule.forRoot(MyApp),
+    SuperTabsModule.forRoot(),
   ],
+  
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    PostPage,
+    SchedulePage,
   ],
-  providers: [
-    StatusBar,
+ 
+providers: [
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    StatusBar,
+    SchedulePage,
+    Service,
+    OneSignal,
+    Facebook,
+    SocialSharing,
+    Functions,
+    UserData,
+    
+    NativeStorage,
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }

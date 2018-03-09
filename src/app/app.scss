@@ -1,16 +1,165 @@
-// http://ionicframework.com/docs/theming/
+// Media of at most the maximum breakpoint width. No query for the largest breakpoint.
+// Makes the @content apply to the given breakpoint and narrower.
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
 
 
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
+
+// Name of the next breakpoint, or null for the last breakpoint.
 //
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
+//    >> breakpoint-next(sm)
+//    md
+//    >> breakpoint-next(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    md
+//    >> breakpoint-next(sm, $breakpoint-names: (xs sm md lg xl))
+//    md
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+  $n: index($breakpoint-names, $name);
+  @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
+
+
+// Maximum breakpoint width. Null for the largest (last) breakpoint.
+// The maximum value is calculated as the minimum of the next one less 0.1.
 //
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
+//    >> breakpoint-max(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    767px
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $next: breakpoint-next($name, $breakpoints);
+  @return if($next, breakpoint-min($next, $breakpoints) - 1px, null);
+}
+
+
+// Creates text alignment classes based on screen size
+// TODO this would be nice to add to the framework
+@each $breakpoint in map-keys($grid-breakpoints) {
+  $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+  @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+    // Provide text `[text-{bp}]` attributes for aligning text based on screen size
+    [text#{$infix}-center] {
+      text-align: center;
+    }
+
+    [text#{$infix}-left] {
+      text-align: left;
+    }
+
+    [text#{$infix}-right] {
+      text-align: right;
+    }
+
+    [hidden#{$infix}-up] {
+      display: none;
+    }
+  }
+
+  @include media-breakpoint-down($breakpoint, $grid-breakpoints) {
+    [hidden#{$infix}-down] {
+      display: none;
+    }
+  }
+}
+
+@font-face {
+  font-family: 'Montserrat-Regular';
+  src: url("../assets/font/Montserrat/Montserrat-Regular.ttf");
+}
+
+@font-face {
+  font-family: 'Montserrat-Light';
+  src:  url("../assets/font/Montserrat/Montserrat-Light.ttf");
+}
+
+
+*{
+font-family: 'Montserrat-Regular';
+}
+
+ion-spinner{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+//alert
+.alert-md .alert-title {
+    font-size: 17px;
+}
+.alert-md .alert-sub-title {
+    font-size: 14px;
+}
+
+//toolabr
+.toolbar-md {
+    padding: 4px;
+    min-height: 54px;
+}
+.toolbar-title-ios, .toolbar-title-md{
+    text-align: center;
+    font-size: 17px;
+    font-weight:600;
+}
+
+.scroll-content-md{
+  margin-top: 54px !important;
+}
+
+
+.spinner-ios-crescent circle, .spinner-md-crescent circle {
+    stroke: #000;
+}
+
+.toolbar-background {
+    border-color: transparent;
+    background: $button-color;
+}
+.content-ios.outer-content {
+    background: #ffffff;
+}
+.bar-button-default-ios {
+    color: #ffffff;
+    background-color: transparent;
+}
+.toolbar-title-ios {
+    color: #fff;
+}
+.list > .item-block:last-child {
+    border-bottom: 0;
+}
+.list-header {
+    border-bottom: 0;
+    margin-bottom: 0;
+    border-top: 0;
+    font-size: 12px;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: #999;
+    font-weight: 600;
+}
+.list-header-ios {
+    font-size: 12px;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: #999;
+    font-weight: 600;
+}
+.list .item-block .item-inner {
+    border-bottom: 0;
+}
+.item-md ion-icon[item-left] + .item-inner {
+    margin-left: 12px;
+}
+.item > ion-icon, .item-inner > ion-icon {
+    font-size: 24px;
+}

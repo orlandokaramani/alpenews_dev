@@ -1,0 +1,158 @@
+$categories: (
+ ionic: color($colors, primary),
+ angular: #AC282B,
+ communication: #8E8D93,
+ tooling: #FE4C52,
+ services: #FD8B2D,
+ design: #FED035,
+ workshop: #69BB7B,
+ food: #3BC7C4,
+ documentation: #B16BE3,
+ navigation: #6600CC,
+);
+
+@function auxiliary-categories() {
+  @return map-remove($categories);
+}
+
+page-schedule {
+  @each $track, $value in auxiliary-categories() {
+   ion-item-sliding[track=#{$track}] ion-label {
+     border-left: 2px solid $value;
+     padding-left: 10px;
+   }
+  }
+}
+
+.posts-content{
+
+.segment{
+  .segment .segment-button.segment-activated {
+    color: #000;
+    background-color: #fff;
+    border: 0;
+    border-radius: 0;
+    height: 50px;
+    border-bottom: 3px solid #488aff;
+    font-weight: 600;
+    font-size: 16px;
+    } 
+
+    .segment .segment-button {
+    border: 0;
+    color: #000;
+    height: 50px;
+    background-color: transparent;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .label-md {
+    margin: 5px;
+    text-transform: capitalize;
+  }
+}
+
+  .no-post{
+  h3{
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+  font-size: 16px;
+  }
+  }
+
+  .posts{
+
+  background-color: #f9f9f9;
+
+  .row.unlimited-items {
+  flex-wrap: wrap;
+  padding: 15px 0 0 15px;
+  }
+
+  .row.unlimited-items .col{
+  flex: none;
+  width: 50%;
+  padding: 0 15px 15px 0;
+  }
+
+  .card {
+  margin:0px;
+  width:100%;
+  box-shadow: none;
+  height: 100%;
+
+      img{
+      max-height: 120px;
+      height: 120px;
+      }
+  }
+
+  .card-content{
+  padding: 0;
+  }
+
+  .details{
+      padding: 10px;
+
+      h2{
+      text-transform: uppercase;
+      font-size: 14px;
+      font-weight: 600;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+      overflow: hidden;
+      }
+
+      ion-icon {
+        display: inline-block;
+        font-size: 14px;
+        margin-right: 3px;
+      }
+
+      h3{
+        font-size: 10px;
+        color: #999;
+        text-transform: uppercase;
+      }
+
+      p, h1, h2, h3, h4, h5, h6{
+       margin: 0 0 2px;
+       font-size: 13px;
+       color: #666;
+       line-height: 1.5;
+
+         img{
+         display: none;
+         }
+      }
+
+      .info{
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
+        overflow: hidden;
+        color: #999;
+        height: 75px;
+
+        img{
+        display: none;
+        }
+      }
+
+      hr {
+      display: none;
+      }
+  }
+
+  }
+
+  ion-icon {
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 3px;
+    color: $icon-color;
+  }
+}

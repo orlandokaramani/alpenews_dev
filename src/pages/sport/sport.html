@@ -1,0 +1,115 @@
+<ion-header no-shadow no-border>
+  <ion-navbar color="lineare">
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentFilter()">
+        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
+      </button>
+    </ion-buttons>
+        <ion-title><img alt="logo" height="40" src="assets/icon/sport.png" align-title="center"> </ion-title>
+</ion-navbar>
+
+</ion-header>
+<ion-content class="posts-content">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+<ion-spinner *ngIf="!posts?.posts" name="crescent"></ion-spinner>
+<div *ngIf="posts?.posts" class="no-post">
+  <div *ngIf="!posts?.posts.length">
+   <h3>No posts found!</h3>
+  </div>
+</div>
+
+<div class="posts">
+<div [hidden]="!showRecent" class="show-recent"  *ngIf="posts?.posts.length">
+<ion-row class="row unlimited-items">
+<ion-col *ngFor="let post of posts?.posts" class="col">
+
+<ion-card tappable (click)="goToPostDetail(post)">
+<ion-card-content>
+          <div *ngIf="post.thumbnail_images" class="post-image">
+            <img *ngIf="post.thumbnail_images.medium" src="{{post.thumbnail_images.medium.url}}">
+          </div>
+
+          <div *ngIf="!post.thumbnail_images && post.thumbnail" class="post-image">
+            <img src="{{post.thumbnail}}">  
+          </div>
+
+
+          <div *ngIf="post.attachments.length && !post.thumbnail_images && !post.thumbnail">
+            <img *ngIf="post.attachments[0].mime_type == 'image/jpeg' || post.attachments[0].mime_type == 'image/gif' || post.attachments[0].mime_type == 'image/png'" src="{{post.attachments[0].url}}">
+              <div *ngIf="post.attachments[0].mime_type != 'image/jpeg' && post.attachments[0].mime_type != 'image/gif' && post.attachments[0].mime_type != 'image/png'" class="videoContainer">
+              <video src="{{post.attachments[0].url}}" controls></video>
+              </div>
+          </div>
+
+            <ion-thumbnail item-left *ngIf="!post.thumbnail && !post.attachments.length">
+              <img src="assets/img/shop-icon.jpg">
+           </ion-thumbnail>
+</ion-card-content>
+
+<div class="details">
+<h2 [innerHTML]="post.title" style="margin: 5px 0;"></h2>
+<h3 style="margin: 10px 0; font-size: 10px;"><ion-icon name="md-time"></ion-icon>{{post.date | translate}}</h3>
+<div [innerHTML]="post.content" class="info"></div>
+</div>
+</ion-card>
+</ion-col>
+</ion-row>
+<ion-item style="text-align: center;" [hidden]="hasMoreStories">
+No More Stories
+</ion-item>
+</div> 
+
+<div [hidden]="showRecent" class="show-recent">
+<ion-row class="row unlimited-items">
+<ion-col *ngFor="let post of topStories?.posts" class="col">
+
+<ion-card tappable (click)="goToPostDetail(post)">
+<ion-card-content>
+          <div *ngIf="post.thumbnail_images" class="post-image">
+            <img *ngIf="post.thumbnail_images.medium" src="{{post.thumbnail_images.medium.url}}">  
+          </div>
+
+          <div *ngIf="!post.thumbnail_images && post.thumbnail" class="post-image">
+            <img src="{{post.thumbnail}}">  
+          </div>
+
+
+          <div *ngIf="post.attachments.length && !post.thumbnail_images && !post.thumbnail">
+            <img *ngIf="post.attachments[0].mime_type == 'image/jpeg' || post.attachments[0].mime_type == 'image/gif' || post.attachments[0].mime_type == 'image/png'" src="{{post.attachments[0].url}}">
+              <div *ngIf="post.attachments[0].mime_type != 'image/jpeg' && post.attachments[0].mime_type != 'image/gif' && post.attachments[0].mime_type != 'image/png'" class="videoContainer">
+              <video src="{{post.attachments[0].url}}" controls></video>
+              </div>
+          </div>
+</ion-card-content>
+<div class="details">
+<h2 [innerHTML]="post.title" style="margin: 5px 0;"></h2>
+<h3 style="margin: 10px 0; font-size: 10px;"><ion-icon name="md-time"></ion-icon>{{post.date | translate}}</h3>
+<div [innerHTML]="post.content" class="info"></div>
+</div>
+</ion-card>
+</ion-col>
+</ion-row>
+<ion-item style="text-align: center;" [hidden]="hasMoreStories">
+No More Stories
+</ion-item>
+</div>
+
+</div>
+
+
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="hasMoreTopStories && !showRecent">
+      <ion-infinite-scroll-content
+       loadingSpinner="crescent"
+       loadingText='Loading more stories..'>
+      </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="hasMoreStories && showRecent">
+      <ion-infinite-scroll-content
+       loadingSpinner="crescent"
+       loadingText='Loading more stories..'>
+      </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>

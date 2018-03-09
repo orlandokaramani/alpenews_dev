@@ -1,16 +1,6 @@
 // Ionic Variables and Theming. For more info, please see:
-// http://ionicframework.com/docs/theming/
-
-// Font path is used to include ionicons,
-// roboto, and noto sans fonts
+// http://ionicframework.com/docs/v2/theming/
 $font-path: "../assets/fonts";
-
-
-// The app direction is used to include
-// rtl styles in your app. For more info, please see:
-// http://ionicframework.com/docs/theming/rtl-support/
-$app-direction: ltr;
-
 
 @import "ionic.globals";
 
@@ -20,7 +10,7 @@ $app-direction: ltr;
 // To customize the look and feel of this app, you can override
 // the Sass variables found in Ionic's source scss files.
 // To view all the possible Ionic variables, see:
-// http://ionicframework.com/docs/theming/overriding-ionic-variables/
+// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
 
 
@@ -34,14 +24,50 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
+  primary:    #1d3557,
+  best: #1d3557,
+  secondary:  #00743f,
+  danger:     #e458b9,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #3F51B5,
+  yellow:     #FFEA00,
+  lineare:  (base: #dee3eb, contrast: #fff),
+  oliver: #a7414a,
+
+//customise header color here
+header:    #ff3319,
+
+//customise button color here
+button-color: #ff3319,
+
+//customise text color here
+side-heading-color:  #ff3319,
+
+//customise icon color
+icon-color:  #ff5722
+
 );
 
+//customise header color here
+$header: #ff3319;
 
+//customise button color here
+$button-color: #ff3319;
+
+//customise toggle-button color here
+$toggle-button-color: #ff3319;
+
+//customise text color here
+$side-heading-color:  #ff3319;
+
+//customise date icon color here
+$icon-color:  #ff5722;
+
+// Use the primary color as the background for the toolbar-md-background
+$toolbar-md-background:                   color($colors, primary);
+
+// Change the color of the segment button text
+$toolbar-md-active-color:                 #fff;
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
@@ -76,7 +102,7 @@ $colors: (
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:
-// http://ionicframework.com/docs/ionicons/
+// http://ionicframework.com/docs/v2/ionicons/
 
 @import "ionic.ionicons";
 

@@ -1,0 +1,25 @@
+page-sport {
+    .toolbar-md-dark .toolbar-background-md {
+        background-color: #1d3557 !important;
+    }
+    ion-header {
+        .button-md {
+          box-shadow: none;
+        }
+        .toolbar-ios-lineare .bar-button-default-ios,
+        .toolbar-md-lineare .bar-button-default-md{
+          background-color: #dee3eb;
+          color: #00743f;
+        }
+        .toolbar-title {
+          display: -webkit-flex;
+          display: flex;
+          -webkit-flex-direction: row;
+          flex-direction: row;
+          -webkit-align-items: center;
+          align-items: center;
+          -webkit-justify-content: center;
+          justify-content: center;
+        }
+      }
+}

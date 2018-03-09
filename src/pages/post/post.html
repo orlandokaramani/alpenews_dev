@@ -1,0 +1,65 @@
+<ion-header class="post-header" no-border>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content class="post">
+  
+  <div>
+  <ion-spinner *ngIf="!post?.post" name="crescent"></ion-spinner>
+  </div>
+  
+  <div class="loader">
+  </div>
+  
+        <div *ngIf="post">
+            <div *ngIf="post.post">
+  
+              <div *ngIf="post.post.thumbnail_images" class="post-image">
+                <img *ngIf="post.post.thumbnail_images.full" src="{{post.post.thumbnail_images.full.url}}">  
+              </div>
+  
+              <div *ngIf="!post.post.thumbnail_images && post.post.thumbnail" class="post-image">
+                <img src="{{post.post.thumbnail}}">  
+              </div>
+  
+  
+              <div *ngIf="post.post.attachments.length && !post.post.thumbnail_images && !post.post.thumbnail">
+                <img *ngIf="post.post.attachments[0].mime_type == 'image/jpeg' || post.post.attachments[0].mime_type == 'image/gif' || post.post.attachments[0].mime_type == 'image/png'" src="{{post.post.attachments[0].url}}">
+                  <div *ngIf="post.post.attachments[0].mime_type != 'image/jpeg' && post.post.attachments[0].mime_type != 'image/gif' && post.post.attachments[0].mime_type != 'image/png'" class="videoContainer">
+                  <video src="{{post.post.attachments[0].url}}" controls></video>
+                  </div>
+              </div>
+  
+           <ion-item no-lines class="date">
+          
+           </ion-item>
+  
+           <ion-item no-lines class="heading">
+           <h2 [innerHTML]="post.post.title"></h2>
+           </ion-item>
+  
+           </div>
+           <ion-card-content>
+              <div  style="font-weight: 500;" [innerHTML]="post?.post?.content"></div>
+           </ion-card-content>
+  
+          
+           
+      
+      
+        <ion-fab bottom right #fab>
+          <button ion-fab class="share"><ion-icon name="md-share"></ion-icon></button>
+          <ion-fab-list side="top">
+            <button ion-fab style="color: #FF5722" (click)="shareWithGmail(post.post, 'Instagram', fab)"><ion-icon name="ios-mail"></ion-icon></button>
+            <button ion-fab style="color: #34af23" name="logo-whatsapp" (click)="shareWithWhatsapp(post.post, 'Whatsapp', fab)"><ion-icon name="logo-whatsapp"></ion-icon></button>
+            <button ion-fab style="color: #00aced" (click)="shareWithTw(post.post, 'Twitter', fab)"><ion-icon name="logo-twitter"></ion-icon></button>
+            <button ion-fab style="color: #3b5998" (click)="shareWithFb(post.post, 'Facebook', fab)"><ion-icon name="logo-facebook"></ion-icon></button>
+          </ion-fab-list>
+        </ion-fab>
+      
+
+      

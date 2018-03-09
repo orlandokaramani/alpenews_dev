@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Anullo</button>
+    </ion-buttons>
+
+    <ion-title>
+      Njoftime
+    </ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="applyFilters()" strong>Prano</button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="outer-content">
+
+  <ion-list>
+    <ion-list-header>Zgjidh Kategorinë e njoftimeve</ion-list-header>
+
+    <ion-item *ngFor="let track of confData.mainCategories" [attr.c] >
+      <span item-start class="dot" [ngClass]="{dotgreen : track.isChecked}"></span>
+      <ion-label [innerHtml]="track.title"></ion-label>
+      <ion-toggle [(ngModel)]="track.isChecked" (ngModelChange)="setPush(track)" color="button-color"></ion-toggle>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list>
+    <button ion-item (click)="resetFilters()" detail-none class="reset-filters">
+      Pastro Filter
+    </button>
+  </ion-list>
+
+</ion-content>
