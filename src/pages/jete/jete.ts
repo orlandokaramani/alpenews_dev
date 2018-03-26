@@ -55,7 +55,7 @@ constructor(
     this.name = params.data.title;
     this.rootNavCtrl = params.get('rootNavCtrl');
 
-    this.service.getCategoryPost(this.id = 60, this.page)
+    this.service.getCategoryPost(this.id = 103, this.page)
     .then((results) => {this.posts = results});
 }
 

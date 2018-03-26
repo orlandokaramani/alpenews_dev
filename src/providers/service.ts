@@ -268,6 +268,7 @@ export class Service {
         this.http.get(this.url + '/api/core/get_category_posts/?'+ 'id=' + id + '&page=' + page).map(res => res.json())
             .subscribe(data => {
               this.categoryPost = data;
+              console.log(data);
               resolve(this.categoryPost);
         });
      });
