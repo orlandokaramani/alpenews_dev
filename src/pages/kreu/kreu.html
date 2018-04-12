@@ -10,6 +10,19 @@
    <h3>No posts found!</h3>
   </div>
 </div>
+<ion-card-content> 
+    <ion-slides > 
+      <ion-slide *ngFor="let post of posts?.posts"> 
+        <div *ngIf="post.thumbnail_images" class="slide-image">
+          <img *ngIf="post.thumbnail_images.medium_large" src="{{post.thumbnail_images.medium.url}}">
+        </div>
+        <div class="slider-details">
+          <h4 [innerHTML]="post.title"></h4>
+        </div> 
+      </ion-slide> 
+    </ion-slides> 
+  </ion-card-content>
+
 
 <div class="posts">
 <div [hidden]="!showRecent" class="show-recent"  *ngIf="posts?.posts.length">
@@ -76,7 +89,7 @@ No More Stories
 </ion-card-content>
 <div class="details">
 <h2 [innerHTML]="post.title" style="margin: 5px 0;"></h2>
-<h3 style="margin: 10px 0; font-size: 10px;"><ion-icon name="md-time"></ion-icon>{{post.date | translate}}</h3>
+
 <div [innerHTML]="post.content" class="info"></div>
 </div>
 </ion-card>
@@ -104,3 +117,4 @@ No More Stories
       </ion-infinite-scroll-content>
 </ion-infinite-scroll>
 </ion-content>
+

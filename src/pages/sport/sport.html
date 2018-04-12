@@ -6,19 +6,21 @@
       </button>
     </ion-buttons>
         <ion-title><img alt="logo" height="40" src="assets/icon/sport.png" align-title="center"> </ion-title>
-</ion-navbar>
-
+  </ion-navbar>
 </ion-header>
+
 <ion-content class="posts-content">
   <ion-refresher (ionRefresh)="doRefresh($event)">
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
 <ion-spinner *ngIf="!posts?.posts" name="crescent"></ion-spinner>
-<div *ngIf="posts?.posts" class="no-post">
-  <div *ngIf="!posts?.posts.length">
-   <h3>No posts found!</h3>
+  <div *ngIf="posts?.posts" class="no-post">
+    <div *ngIf="!posts?.posts.length">
+    <h3>No posts found!</h3>
+    </div>
   </div>
-</div>
+
+
 
 <div class="posts">
 <div [hidden]="!showRecent" class="show-recent"  *ngIf="posts?.posts.length">

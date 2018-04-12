@@ -1,3 +1,4 @@
+
 import { UserData } from './../providers/user-data';
 import { SchedulePage } from './../pages/schedule/schedule';
 import { PostPage } from '../pages/post/post';
@@ -22,7 +23,6 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     MyApp,
     PostPage,
     SchedulePage,
-  
   ],
   imports: [
     IonicStorageModule.forRoot(),

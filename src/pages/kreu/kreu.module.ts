@@ -1,3 +1,5 @@
+
+
 import { PipeModule } from './../../providers/pipe.module';
 import { KreuPage } from './kreu';
 import { NgModule } from '@angular/core';
@@ -10,7 +12,8 @@ import { IonicPageModule } from 'ionic-angular';
 
   imports: [
     IonicPageModule.forChild(KreuPage),
-PipeModule
+    PipeModule,
+  
   ]
 })
 export class Module {}
