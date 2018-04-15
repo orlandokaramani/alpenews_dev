@@ -44,7 +44,7 @@
   
            </div>
            <ion-card-content>
-              <div  style="font-weight: 500;" [innerHTML]="post?.post?.content"></div>
+              <div  style="font-weight: 500;" [innerHTML]="post?.post?.content | keepHtml"></div>
            </ion-card-content>
   
         <ion-fab bottom right #fab>

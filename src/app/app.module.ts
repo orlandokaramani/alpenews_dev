@@ -17,14 +17,17 @@ import { OneSignal } from '@ionic-native/onesignal'
 import { Functions } from '../providers/functions';
 import { Facebook } from '@ionic-native/facebook';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { EscapeHtmlPipe } from '../providers/keep-html';
 
 @NgModule({
   declarations: [
     MyApp,
     PostPage,
     SchedulePage,
+    EscapeHtmlPipe
   ],
   imports: [
+    
     IonicStorageModule.forRoot(),
     BrowserModule, 
     HttpModule,
